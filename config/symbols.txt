@@ -1,0 +1,83 @@
+# Technology Sector
+AAPL
+MSFT
+GOOGL
+META
+NVDA
+INTC
+AMD
+CSCO
+IBM
+ORCL
+
+# Financial Sector
+JPM
+BAC
+WFC
+GS
+MS
+C
+BLK
+AXP
+V
+MA
+
+# Consumer Sector
+AMZN
+WMT
+TGT
+COST
+HD
+LOW
+MCD
+SBUX
+NKE
+DIS
+
+# Healthcare Sector
+JNJ
+PFE
+MRK
+UNH
+CVS
+ABT
+TMO
+ABBV
+LLY
+AMGN
+
+# Industrial Sector
+GE
+BA
+CAT
+MMM
+HON
+UPS
+FDX
+RTX
+LMT
+DE
+
+# Energy Sector
+XOM
+CVX
+COP
+EOG
+SLB
+PXD
+VLO
+PSX
+MPC
+OXY
+
+# Utilities Sector
+NEE
+DUK
+SO
+D
+AEP
+EXC
+SRE
+PEG
+ED
+XEL

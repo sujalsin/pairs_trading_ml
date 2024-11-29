@@ -1,0 +1,117 @@
+data:
+  symbols:
+    - AAPL
+    - MSFT
+    - GOOGL
+    - META
+    - AMZN
+    - NVDA
+    - AMD
+    - INTC
+    - TSM
+    - QCOM
+    - MU
+    - AMAT
+    - LRCX
+    - V
+    - MA
+    - PYPL
+    - SQ
+    - MSFT
+    - ORCL
+    - CRM
+    - NOW
+    - ADBE
+    - INTU
+    - AMZN
+    - WMT
+    - TGT
+    - COST
+    - META
+    - SNAP
+    - PINS
+    - NFLX
+    - DIS
+  start_date: "2020-01-01"
+  end_date: "2023-12-31"
+
+pairs_selection:
+  formation_period: 252  # One year of trading data
+  p_value_threshold: 0.05
+  correlation_threshold: 0.7
+  min_half_life: 5.0
+  max_half_life: 20.0
+  sector_mapping:
+    tech_hardware:
+      - AAPL
+      - MSFT
+      - GOOGL
+    semiconductors:
+      - NVDA
+      - AMD
+      - INTC
+      - TSM
+      - QCOM
+      - MU
+      - AMAT
+      - LRCX
+    fintech:
+      - V
+      - MA
+      - PYPL
+      - SQ
+    software:
+      - MSFT
+      - ORCL
+      - CRM
+      - NOW
+      - ADBE
+      - INTU
+    retail:
+      - AMZN
+      - WMT
+      - TGT
+      - COST
+    social_media:
+      - META
+      - SNAP
+      - PINS
+    streaming:
+      - NFLX
+      - DIS
+
+ml_model:
+  model_type: "lightgbm"
+  lookback_period: 20
+  test_size: 0.2
+  random_state: 42
+  features:
+    - zscore
+    - momentum
+    - volatility
+    - rsi
+    - macd
+    - bollinger_bands
+
+strategy:
+  entry_threshold: 2.0
+  exit_threshold: 0.5
+  stop_loss: 0.05
+  base_position_size: 100000
+  max_positions: 10
+  initial_capital: 1000000.0
+  min_holding_period: 5
+  max_holding_period: 30
+  transaction_costs:
+    commission: 0.001
+    slippage: 0.001
+  profit_target: 0.03
+  risk_per_trade: 0.02
+  max_position_size_pct: 0.15
+  min_liquidity_ratio: 3.0
+  atr_periods: 14
+  atr_stop_multiplier: 2.0
+
+logging:
+  level: INFO
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'

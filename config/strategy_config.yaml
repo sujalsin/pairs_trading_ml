@@ -1,0 +1,103 @@
+# Configuration for pairs trading strategy
+
+# Data collection settings
+data:
+  symbols:
+    # Semiconductor pairs
+    - NVDA  # NVIDIA
+    - AMD   # Advanced Micro Devices
+    - INTC  # Intel
+    - TSM   # Taiwan Semiconductor
+    - QCOM  # Qualcomm
+    - MU    # Micron Technology
+    - AMAT  # Applied Materials
+    - LRCX  # Lam Research
+    # Payment processors
+    - V     # Visa
+    - MA    # Mastercard
+    - PYPL  # PayPal
+    - SQ    # Block (Square)
+    # Cloud/Software pairs
+    - MSFT  # Microsoft
+    - ORCL  # Oracle
+    - CRM   # Salesforce
+    - NOW   # ServiceNow
+    - ADBE  # Adobe
+    - INTU  # Intuit
+    # E-commerce/Retail pairs
+    - AMZN  # Amazon
+    - WMT   # Walmart
+    - TGT   # Target
+    - COST  # Costco
+    # Social Media
+    - META  # Meta Platforms
+    - SNAP  # Snap
+    - PINS  # Pinterest
+    # Streaming Services
+    - NFLX  # Netflix
+    - DIS   # Disney
+  start_date: '2020-01-01'
+  end_date: '2023-12-31'
+
+# Pairs selection parameters
+pairs_selection:
+  formation_period: 126  # ~6 months of trading days
+  p_value_threshold: 0.10  # Increased from 0.05 for more pairs
+  correlation_threshold: 0.50  # Reduced from 0.70 for more pairs
+  min_half_life: 1.0  # Reduced from 2.0 for faster mean reversion
+  max_half_life: 30  # Keep as is
+  min_zscore_history: 50  # Reduced from 100 for more opportunities
+  sector_mapping:
+    semiconductors: [NVDA, AMD, INTC, TSM, QCOM, MU, AMAT, LRCX]
+    payments: [V, MA, PYPL, SQ]
+    software: [MSFT, ORCL, CRM, NOW, ADBE, INTU]
+    retail: [AMZN, WMT, TGT, COST]
+    social_media: [META, SNAP, PINS]
+    streaming: [NFLX, DIS]
+  max_pairs_per_sector: 3  # Maximum number of pairs to select from each sector
+
+# ML model settings
+ml_model:
+  model_type: 'lgb'
+  lookback_period: 15  # Reduced from 20 for even more responsive signals
+  test_size: 0.2
+  random_state: 42
+  feature_importance_threshold: 0.01  # Reduced from 0.02
+  entry_threshold: 0.5  # Reduced from 0.75 for more signals
+
+# Trading strategy parameters
+strategy:
+  # Entry/Exit Thresholds
+  entry_threshold: 0.5  # Reduced from 0.75 for more signals
+  exit_threshold: 0.25  # Reduced from 0.3 for faster exits
+  stop_loss: 3.0  # Increased from 2.5 for more room
+  profit_target: 0.6  # Reduced from 0.8 for faster profit taking
+  min_holding_period: 1
+  max_holding_period: 5  # Reduced from 8 for faster turnover
+  
+  # Position Sizing
+  position_size: 800.0  # Reduced from 1000.0 for smaller initial positions
+  max_positions: 10  # Increased from 8
+  max_position_size_pct: 0.08  # Reduced from 0.10 for better risk management with more trades
+  position_size_atr_multiplier: 0.8  # Reduced from 1.0
+  
+  # Risk Management
+  risk_per_trade: 0.01  # Reduced from 0.015 since we're trading more frequently
+  atr_periods: 14
+  min_liquidity_ratio: 0.1
+  initial_capital: 1000000.0
+  
+  # Transaction Costs
+  commission: 0.001
+  slippage: 0.0005
+
+# Logging settings
+logging:
+  log_dir: 'logs'
+
+# Output settings
+output:
+  results_dir: 'results'
+  plots_dir: 'plots'
+  metrics_file: 'metrics.csv'
+  trades_file: 'trades.csv'
